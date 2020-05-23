@@ -1,0 +1,90 @@
+﻿<Window x:Class="WpfDataBase.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDataBase"
+        mc:Ignorable="d"
+        Title="WPF Data Base" Height="450" Width="800" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5 5 0 5" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="100" />
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="MainGrid" ShowGridLines="false">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25px"/>
+            <RowDefinition Height="2*" />
+            <RowDefinition  />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition />
+
+        </Grid.ColumnDefinitions>
+        
+        <Menu x:Name="Menu" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <MenuItem Header="Главная">
+                <MenuItem Header="Тест" ></MenuItem>
+                <Separator />
+                <MenuItem Header="Выйти" ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Справка" ></MenuItem>
+        </Menu>
+        
+        <DataGrid x:Name="DataViewGrid" Grid.Row="1" Grid.Column="0" Margin="5,5,5,0" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Title}" Header="Сотрудник" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Company}" Header="Зарплата" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Price}" Header="Дата" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid x:Name="ActionsGrid" Grid.Row="1" Grid.Column="1" Margin="0,0,5,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" Header="Поиск">
+                <StackPanel >
+                    <TextBox x:Name="searchBox"/>
+                    <Button Content="Найти"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Row="1" Header="Управление БД">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Добавить" HorizontalAlignment="Left"/>
+                    <Button Content="Обновить" HorizontalAlignment="Center" Grid.Row="1"/>
+                    <Button Content="Удалить" HorizontalAlignment="Right" />
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Row="2" Header="Фильтры">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <DatePicker x:Name="dataStart" SelectedDate="01.01.2020" Grid.Column="0"/>
+                    <DatePicker x:Name="dataEnd" SelectedDate="12.31.2020" Grid.Column="1"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+      
+        <GroupBox x:Name="ConsoleBox" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Header="Консоль" Margin="5,0,5,5">
+            <TextBox Background="WhiteSmoke" IsReadOnly="True" TextWrapping="Wrap"/>
+        </GroupBox>
+    </Grid>
+
+
+</Window>
